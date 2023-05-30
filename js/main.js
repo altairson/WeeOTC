@@ -22,6 +22,7 @@ $(document).ready(function() {
     })
     
     $("#design").click(function() {
+        $("#submit").click();
         changeDesign();
     })
 
@@ -72,4 +73,22 @@ $(document).ready(function() {
         }
         generateRoomId(); 
     }
+
+
+    function read_write_in_google_sheets() {
+        const url = "https://script.google.com/macros/s/AKfycbyiEIWOVeleW9dlaXlc3GR2VmVU6nYG0Vy9ClC2mzcXGowMp7D5BFrrWRu3DJsle9BG_A/exec";
+        document.getElementById('app_form').action = url;
+
+        fetch(`${url}`)
+            .then((response) => response.json())
+            .then(({ data }) => {
+                datalist = data;
+                console.log(datalist);
+            })
+        .catch((error) => console.error('!!!!!!!!', error));
+    }
+
+    read_write_in_google_sheets();
+    
+
 });
