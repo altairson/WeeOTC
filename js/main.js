@@ -158,4 +158,20 @@ $(document).ready(function() {
         }
     }
     showProgress();
+
+    $(".tg-btn").append(`<script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="weeotc_bot" data-size="medium" data-userpic="false" data-onauth="onTelegramAuth(user)"></script>`);
+
+    // user auth with telegram
+    function onTelegramAuth(user) {
+        displayUserInfo(user);
+        alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
+    }
+
+    function displayUserInfo(user) {
+        $("#username")[0].innerText = user.first_name;
+        $(".tg-btn").toggleClass('hidden');
+        $(".user-info").toggleClass('hidden');
+    }
+
+
 });
