@@ -1,6 +1,6 @@
 $(document).ready(function() {
     const fee_factor = 3;
-    const url = "https://script.google.com/macros/s/AKfycbzl7Qy9oEs4-cBVJdu3oiBH3FkNevZ9bVakdRqQoQZ6zqoMksW480oMxnZiUugRT_IYFQ/exec";
+    const url = "https://script.google.com/macros/s/AKfycbxC09gDkyhKycuz3gPd9-h9TA1Fx90fF-xk74zm7exppGrZVDfHcmTNPfZQqzKDjXpdFA/exec";
 
     $("#create_room_btn").click(function() {
         createRoom();
