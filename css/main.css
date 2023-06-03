@@ -5,6 +5,24 @@
     font-family: monospace;
 }
 
+.tg-btn.hidden {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-info {
+    color: darkslategray;
+}
+
+b#user_ {
+    font-weight: bolder;
+    color: seagreen;
+    font-family: cursive;
+}
+
 .tag-status {
 }
 
@@ -238,6 +256,13 @@ body {
     color: gray;
     -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.31);
+}
+
+.tg-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #design {
@@ -513,9 +538,9 @@ body {
 }
 
 .tg-button {
-  border: 1px solid red;
+  border: antiquewhite;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   padding: 10px;
