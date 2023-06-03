@@ -1,12 +1,9 @@
 $(document).ready(function() {
+    const fee_factor = 3;
+    const url = "https://script.google.com/macros/s/AKfycbzl7Qy9oEs4-cBVJdu3oiBH3FkNevZ9bVakdRqQoQZ6zqoMksW480oMxnZiUugRT_IYFQ/exec";
 
-    
     $("#create_room_btn").click(function() {
         createRoom();
-    })
-
-    $("#join_room_btn").click(function() {
-        joinRoom();
     })
 
     $("#create_btn").click(function() {
@@ -39,12 +36,36 @@ $(document).ready(function() {
         alert("Room has been created!");
     }
 
-    function joinRoom() {
-        let room_id = $("#join_room_id").val();
-        let keyword = $("#join_keyword").val();
-        console.log(room_id, keyword);
+
+
+    $(".closer").click(function() {
+        this.parentElement.parentElement.classList.add('hidden');
+    })
+
+    function calculateFee(all, price) {
+        let total_allo = parseInt(all) * parseInt(price);
+        let fee = total_allo * fee_factor / 100;
+        return fee;
+    }
+
+
+
+    function joinRoom(data) {
+        $("#otc_room_id")[0].innerText = data.result[0];
+        let values = $('.value');
+        values[0].innerText = data.result[1];
+        values[1].innerText = data.result[2];
+        values[2].innerText = data.result[3];
+        values[3].innerText = data.result[4];
+        values[4].innerText = data.result[5];
+        values[5].innerText = calculateFee(data.result[4], data.result[5]);
+        
+
+
+
         $(".overlay").toggleClass("hidden");
         $("#join_div").toggleClass("hidden");
+        $("#room").toggleClass("hidden");
         alert("succesfully joined!");
     }
 
@@ -74,21 +95,72 @@ $(document).ready(function() {
         generateRoomId(); 
     }
 
+    $("#join_form")[0].addEventListener("submit", function (event) {
+        event.preventDefault();
+      
+        // Get form data
+        var form = event.target;
+        var formData = new FormData(form);
+      
+        // Send data to App Script
+        fetch(url + "?" + new URLSearchParams(formData))
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            console.log(data);
+            if(data == false) {
+                alert("False");
+            }
+            else {
+                joinRoom(data);
+            }
+            
+          })
+          .catch(function (error) {
+            // Handle errors
+            console.error(error);
+          });
+      });
+      
 
-    function read_write_in_google_sheets() {
-        const url = "https://script.google.com/macros/s/AKfycbyiEIWOVeleW9dlaXlc3GR2VmVU6nYG0Vy9ClC2mzcXGowMp7D5BFrrWRu3DJsle9BG_A/exec";
-        document.getElementById('app_form').action = url;
 
-        fetch(`${url}`)
-            .then((response) => response.json())
-            .then(({ data }) => {
-                datalist = data;
-                console.log(datalist);
-            })
-        .catch((error) => console.error('!!!!!!!!', error));
+
+
+    function write_in_google_sheets() {
+        document.getElementById('rooms_form').action = url;
     }
 
-    read_write_in_google_sheets();
-    
+    write_in_google_sheets();
 
+    function saveUserInfo(user) {
+        console.log(user);
+    }
+
+
+    function showProgress(percent = 10) {
+        $(".num")[0].innerText = percent;
+        let item = $(".block")[0];
+        let numElement = item.querySelector('.num');
+        let num = parseInt(numElement.innerText);
+        let count = 0;
+        let time = 2000 / num;
+        let circle = item.querySelector('.circle');
+        setInterval(() => {
+            if(count == num){
+                clearInterval();
+            } 
+            else {
+                count += 1;
+                numElement.innerText = count;
+            }
+        }, time)
+        circle.style.strokeDashoffset = 503 - ( 503 * ( num / 100 ));
+        let dots = item.querySelector('.dots');
+        dots.style.transform = `rotate(${360 * (num / 100)}deg)`;
+        if(num == 100){
+            dots.style.opacity = 0;
+        }
+    }
+    showProgress();
 });

@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 <body class="gradient-3">
-    <button id="design" class="class-efect" type="button">change design</button>
+    <button id="design" class="glass-efect" type="button">change design</button>
     <!-- background glass cards -->
     <div data-v-053f5fce="" data-v-04e2347d="" class="scattered-previews">
         <div data-v-053f5fce="" class="glass" style="width: 141px; height: 198px; top: 842px; left: 215px; transform: rotate(0.59375turn); opacity: 0.348975;"></div>
@@ -35,54 +35,137 @@
         <div data-v-053f5fce="" class="glass" style="width: 61px; height: 160px; top: 652px; left: 1231px; transform: rotate(0.3912turn); opacity: 0.122;"></div>
     </div>
     <div class="container">
-        <button class="card class-efect" id="create_btn">Create OTC Room</button>
-        <button class="card class-efect" id="join_btn">Join OTC Room</button>
+        <button class="card glass-efect" id="create_btn">Create OTC Room</button>
+        <button class="card glass-efect" id="join_btn">Join OTC Room</button>
     </div>
     <div class="overlay hidden"></div>
 
 
-    <!-- this is dummy hidden div for forms to write data in google sheets -->
-    <!-- <div class="">
-        <div class="new-app">
-            <form id="form" target="dummyframe" method="POST">
-                <input type="text" name="a" id='a' />
-                <input type="text" name="b" id='b' />
-                <input type="text" name="c" id='c' />
-                <input type="text" name="d" id='d' />
-                <input type="text" name="e" id='e' />
-                <input type="text" name="f" id='f' />
-                <input type="password" name="g" id='g' />
-                <button id="submit" type="submit">submit</button>
-            </form>
-        </div>
-    </div> -->
+    <!-- Dummy frame to avoid new page loading on form submit -->
     <iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>
 
-
-
-    <div class="popup-div class-efect hidden" id="join_div">
-        <h3 class="header">Join OTC Room:</h3>
+    
+    <div id="room" class="popup-div glass-efect hidden">
+        <div class="head">
+            <h3 class="header">OTC DEAL ROOM: <b id="otc_room_id"></b></h3>
+            <div class="closer">x</div>
+        </div>
         <div class="content">
-            <div class="form__group field">
-                <input type="text" class="form__field" placeholder="Room Keyword" name="keyword" id='join_room_id' required />
-                <label for="join_room_id" class="form__label">Room ID</label>
+            <div class="sub-content">
+                <div class="sc">
+                    <div class="info glass-efect">
+                        <div class="badge">OTC DEAL</div>
+                        <div class="cover">
+                            <img src="./media/astronaut.jpg" alt="">
+                        </div>
+                        <div class="data">
+                            <table>
+                                <tr><td class="name">Project Name:</td><td class="value"></td></tr>
+                                <tr><td class="name">Round:</td><td class="value"></td></tr>
+                                <tr><td class="name">Token Price:</td><td class="value"></td></tr>
+                                <tr><td class="name">Allocation:</td><td class="value"></td></tr>
+                                <tr><td class="name">OTC Price:</td><td class="value price"></td></tr>
+                                <tr><td class="name">OTC Fee:</td><td class="value fee"></td></tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="sc">
+                    <div class="block">
+                        <div class="box">
+                            <p class="number">
+                                <span class="num">50</span>
+                                <span class="sub">%</span>
+                            </p>
+                            <p class="title">OTC PROGRESS</p>
+                        </div>
+                        <span class="dots"></span>
+                        <svg class="svg">
+                            <defs>
+                                <linearGradient id="gradientStyle">
+                                    <stop offset="0%" stop-color="gray" />
+                                    <stop offset="100%" stop-color="black" />
+                                </linearGradient>
+                            </defs>
+                            <circle class="circle" cx="90" cy="90" r="80" />
+                        </svg>
+                    </div>
+                    <div class="progress-tags">
+                        <div class="tag step-done">
+                            <div class="tag-name">room created</div>
+                            <div class="tag-status"></div>
+                        </div>
+                        <div class="tag">
+                            <div class="tag-name">telegram authorized</div>
+                            <div class="tag-status"></div>
+                        </div>
+                        <div class="tag">
+                            <div class="tag-name">seller joined</div>
+                            <div class="tag-status"></div>
+                        </div>
+                        <div class="tag">
+                            <div class="tag-name">buyer joined</div>
+                            <div class="tag-status"></div>
+                        </div>
+                        <div class="tag">
+                            <div class="tag-name">allocation confimred</div>
+                            <div class="tag-status"></div>
+                        </div>
+                        <div class="tag">
+                            <div class="tag-name">OTC fee paid</div>
+                            <div class="tag-status"></div>
+                        </div>
+                        <div class="tag">
+                            <div class="tag-name">OTC payment done</div>
+                            <div class="tag-status"></div>
+                        </div>
+                        <div class="tag">
+                            <div class="tag-name">allocation transfered</div>
+                            <div class="tag-status"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <br>
-            <div class="form__group field">
-                <input type="password" class="form__field" placeholder="Room Keyword" name="keyword" id='join_keyword' required />
-                <label for="join_keyword" class="form__label">Room Keyword</label>
+            <div class="roles">
+                <button class="card glass-efect" id="seller_btn">I am Seller</button>
+                <button class="card glass-efect" id="buyer_btn">I am Buyer</button>
             </div>
-            <div class="button">
-                <button id="join_room_btn">Create</button>
+            <div class="tg-button">
+                <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="weeotc_bot" data-size="medium" data-userpic="false" data-onauth="onTelegramAuth(user)">
+                    function onTelegramAuth(user) {
+                        saveUserInfo(user);
+                        alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
+                    }
+                </script>
             </div>
         </div>
     </div>
-    <div class="popup-div class-efect hidden" id="create_div">
+
+    <div class="popup-div glass-efect hidden" id="join_div">
+        <h3 class="header">Join OTC Room:</h3>
+        <div class="content">
+            <form id="join_form" target="dummyframe" method="GET">
+                <div class="form__group field">
+                    <input type="text" class="form__field" placeholder="Room ID" name="id" id='join_room_id' required />
+                    <label for="join_room_id" class="form__label">Room ID</label>
+                </div>
+                <br>
+                <div class="form__group field">
+                    <input type="password" class="form__field" placeholder="Room Keyword" name="pass" id='join_keyword' required />
+                    <label for="join_keyword" class="form__label">Room Keyword</label>
+                </div>
+                <div class="button">
+                    <button type="submit" id="join_room_btn">Join</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="popup-div glass-efect hidden" id="create_div">
         <h3 class="header">Create New OTC Room:</h3>
         <div class="content">
-            <form id="app_form" target="dummyframe" method="POST">
+            <form id="rooms_form" target="dummyframe" method="POST">
                 <div class="form__group field">
-                    <input type="input" class="form__field" placeholder="Room ID" name="room_id" id='room_id' value="We0xj4j3" disabled />
+                    <input type="input" class="form__field" placeholder="Room ID" name="room_id" id='room_id' readonly/>
                     <label for="room_id" class="form__label">Room ID</label>
                 </div>
                 <div class="form__group field">
@@ -105,13 +188,13 @@
                     <input type="input" class="form__field" placeholder="OTC Price" name="otc_price" id='otc_price' required />
                     <label for="otc_price" class="form__label">OTC Price</label>
                 </div>
-                <!-- <div class="form__group field">
-                    <p>Who pays OTC fees?</p>
-                    <input type="radio" id="fees_seller" name="fees" value="Seller pays fees">
-                    <label for="fees_seller">Seller</label><br>
-                    <input type="radio" id="fees_buyer" name="fees" value="Buyer pays fees">
-                    <label for="fees_buyer">Buyer</label><br>
-                </div> -->
+                <div class="form__group field">
+                    <label for="fees">Who pays OTC fees?</label><br>
+                    <select name="fees" id="fees">
+                        <option value="buyer">Buyer</option>
+                        <option value="seller">Seller</option>
+                    </select>
+                </div>
                 <div class="form__group field">
                     <input type="password" class="form__field" placeholder="Room Keyword" name="keyword" id='keyword' required />
                     <label for="keyword" class="form__label">Room Keyword</label>
