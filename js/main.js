@@ -58,9 +58,6 @@ $(document).ready(function() {
         values[4].innerText = data.result[5];
         values[5].innerText = calculateFee(data.result[4], data.result[5]);
         
-
-
-
         $(".overlay").toggleClass("hidden");
         $("#join_div").toggleClass("hidden");
         $("#room").toggleClass("hidden");

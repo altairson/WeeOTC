@@ -215,6 +215,7 @@
 
         function displayUserInfo(user) {
             $("#username")[0].innerText = user.first_name;
+            showProgress(20);
             $(".tg-btn").toggleClass('hidden');
             $(".user-info").toggleClass('hidden');
         }
