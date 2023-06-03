@@ -48,13 +48,6 @@ $(document).ready(function() {
         return fee;
     }
 
-    // user auth with telegram
-    function onTelegramAuth(user) {
-                        
-        alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
-    }
-
-
     function joinRoom(data) {
         $("#otc_room_id")[0].innerText = data.result[0];
         let values = $('.value');
