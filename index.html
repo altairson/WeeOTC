@@ -7,7 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://apis.google.com/js/api.js"></script>
     <link rel="stylesheet" href="./css/main.css">
-    <title>Document</title>
+    <title>WeeOTC</title>
 </head>
 <body class="gradient-3">
     <button id="design" class="glass-efect" type="button">change design</button>
@@ -131,9 +131,10 @@
                 <button class="card glass-efect" id="buyer_btn">I am Buyer</button>
             </div>
             <div class="tg-button">
-                <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="weeotc_bot" data-size="medium" data-userpic="false" data-onauth="onTelegramAuth(user)">
-                    function onTelegramAuth(user) {
-                        saveUserInfo(user);
+                <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="weeotc_bot" data-size="medium" data-userpic="false" data-onauth="onTelegramAuth(user)"></script>
+                <script>
+                     function onTelegramAuth(user) {
+                        
                         alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
                     }
                 </script>
