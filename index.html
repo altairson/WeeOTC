@@ -126,10 +126,6 @@
                     </div>
                 </div>
             </div>
-            <div class="roles">
-                <button class="card glass-efect" id="seller_btn">I am Seller</button>
-                <button class="card glass-efect" id="buyer_btn">I am Buyer</button>
-            </div>
             <div class="tg-button">
                 <div class="user-info hidden">
                     <p>Logged in as: <b id="user_"></b></p>
@@ -137,6 +133,10 @@
                 <div class="tg-btn">
                     <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-login="weeotc_bot" data-size="medium" data-userpic="false" data-onauth="onTelegramAuth(user)"></script>
                 </div>
+            </div>
+            <div class="roles">
+                <button class="card glass-efect" id="seller_btn">I am Seller</button>
+                <button class="card glass-efect" id="buyer_btn">I am Buyer</button>
             </div>
         </div>
     </div>
@@ -240,11 +240,12 @@
             let tags = $(".tag");
             let index = (percent / 10) - 1;
             tags[index].classList.add("step-done");
+            let current_progress = parseInt($(".num")[0].innerText);
             $(".num")[0].innerText = percent;
             let item = $(".block")[0];
             let numElement = item.querySelector('.num');
             let num = parseInt(numElement.innerText);
-            let count = 0;
+            let count = current_progress;
             let time = 2000 / num;
             let circle = item.querySelector('.circle');
             setInterval(() => {
