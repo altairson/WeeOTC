@@ -139,15 +139,15 @@ $(document).ready(function() {
       function asignRole(isSeller) {
         let username = $("#user_")[0].innerText;
         if(isSeller) {
-            $("#seller_btn").val(username);
+            $("#seller_btn")[0].innerText = username;
             $("#seller_btn").removeClass("active");
-            $("#seller_btn").disabled = true;
+            $("#seller_btn")[0].disabled = true;
             $("#seller_btn").addClass("asigned");
         }
         else {
-            $("#buyer_btn").val(username);
+            $("#buyer_btn")[0].innerText = username;
             $("#buyer_btn").removeClass("active");
-            $("#buyer_btn").disabled = true;
+            $("#buyer_btn")[0].disabled = true;
             $("#buyer_btn").addClass("asigned");
         }
       }
