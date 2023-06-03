@@ -521,11 +521,12 @@ body {
 }
 
 .active {
-  background-color: #14f3008b;
 }
 
 .asigned {
-  background-color: red !important;
+  background-color: #008041a8 !important;
+  color: white;
+  box-shadow: inset 0px 0px 10px #000000ad;
 }
 
 .svg {
