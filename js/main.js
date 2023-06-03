@@ -118,7 +118,39 @@ $(document).ready(function() {
           });
       });
       
+      $("#seller_btn").click(function() {
+        if(!$("#seller_btn").hasClass("active")) {
+            alert("Please authorize with Telegram first");
+        }
+        else {
+            asignRole(1);
+        }
+      })
 
+      $("#buyer_btn").click(function() {
+        if(!$("#buyer_btn").hasClass("active")) {
+            alert("Please authorize with Telegram first");
+        }
+        else {
+            asignRole(0);
+        }
+      })
+
+      function asignRole(isSeller) {
+        let username = $("#user_")[0].innerText;
+        if(isSeller) {
+            $("#seller_btn").val(username);
+            $("#seller_btn").removeClass("active");
+            $("#seller_btn").disabled = true;
+            $("#seller_btn").addClass("asigned");
+        }
+        else {
+            $("#buyer_btn").val(username);
+            $("#buyer_btn").removeClass("active");
+            $("#buyer_btn").disabled = true;
+            $("#buyer_btn").addClass("asigned");
+        }
+      }
 
 
 

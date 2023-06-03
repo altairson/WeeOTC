@@ -5,6 +5,9 @@
     font-family: monospace;
 }
 
+.user-info p {
+}
+
 .tg-btn.hidden {
     width: 100%;
     display: flex;
@@ -20,7 +23,6 @@
 b#user_ {
     font-weight: bolder;
     color: seagreen;
-    font-family: cursive;
 }
 
 .tag-status {
@@ -518,6 +520,14 @@ body {
 	transform: translateX(-50%);
 }
 
+.active {
+  background-color: #14f3008b;
+}
+
+.asigned {
+  background-color: red !important;
+}
+
 .svg {
 	position: absolute;
 	width: 100%;
@@ -538,9 +548,8 @@ body {
 }
 
 .tg-button {
-  border: antiquewhite;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   width: 100%;
   padding: 10px;
