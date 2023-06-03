@@ -91,7 +91,7 @@
                         </svg>
                     </div>
                     <div class="progress-tags">
-                        <div class="tag step-done">
+                        <div class="tag">
                             <div class="tag-name">room created</div>
                             <div class="tag-status"></div>
                         </div>
@@ -219,17 +219,49 @@
     <script>
         // user auth with telegram
         function onTelegramAuth(user) {
-            displayUserInfo(user);
+            if (user) {
+                displayUserInfo(user);
+
+                showProgress(20);
+            }
             alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
         }
 
         function displayUserInfo(user) {
             $("#user_name").val(user.first_name + ' ' + user.last_name);
             $("#user_id").val(user.id);
-            $("#username").val((user.username ? ', @' + user.username : ''));
+            $("#username").val((user.username ? '@' + user.username : ''));
             $("#user_")[0].innerText = (user.first_name + ' ' + user.last_name);
             $(".tg-btn").toggleClass('hidden');
             $(".user-info").toggleClass('hidden');
+        }
+
+        function showProgress(percent = 10) {
+            let tags = $(".tag");
+            let index = (percent / 10) - 1;
+            tags[index].classList.add("step-done");
+            $(".num")[0].innerText = percent;
+            let item = $(".block")[0];
+            let numElement = item.querySelector('.num');
+            let num = parseInt(numElement.innerText);
+            let count = 0;
+            let time = 2000 / num;
+            let circle = item.querySelector('.circle');
+            setInterval(() => {
+                if(count == num){
+                    clearInterval();
+                } 
+                else {
+                    count += 1;
+                    numElement.innerText = count;
+                }
+            }, time)
+            circle.style.strokeDashoffset = 503 - ( 503 * ( num / 100 ));
+            let dots = item.querySelector('.dots');
+            dots.style.transform = `rotate(${360 * (num / 100)}deg)`;
+            if(num == 100){
+                dots.style.opacity = 0;
+            }
         }
     </script>
 </body>
